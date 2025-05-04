@@ -1,0 +1,238 @@
+/* ================================
+   Base y Fondo Espacial
+=============================== */
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at bottom, #000010, #000000);
+  height: 100vh;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+#space {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================================
+         Estrellas Dinámicas
+=============================== */
+#stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* ================================
+         La Luna Interactiva
+=============================== */
+#moon {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 30% 30%, #fefefe, #dcdcdc);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 5;
+  animation: floatMoon 4s infinite ease-in-out;
+  box-shadow: 0 0 20px rgba(255, 255, 150, 0.8);  /* Resplandor detrás de la luna */
+}
+
+@keyframes floatMoon {
+  0%, 100% { transform: translate(-50%, -52%); }
+  50% { transform: translate(-50%, -48%); }
+}
+
+#moon.open {
+  animation: openMoon 1s ease-out forwards;
+}
+
+@keyframes openMoon {
+  0% { transform: translate(-50%, -50%) scale(1); filter: brightness(1) drop-shadow(0 0 5px rgba(255,255,150,0.5)); }
+  50% { transform: translate(-50%, -50%) scale(1.2); filter: brightness(2) drop-shadow(0 0 15px rgba(255,255,150,1)); }
+  100% { transform: translate(-50%, -50%) scale(1); filter: brightness(1) drop-shadow(0 0 5px rgba(255,255,150,0.5)); }
+}
+
+/* ================================
+         Flores con mayor iluminación
+=============================== */
+.flower {
+  position: absolute;
+  top: 50%;
+  display: none;
+  cursor: pointer;
+  z-index: 6;
+  animation: sway 3s infinite ease-in-out;
+  box-shadow: 0 0 20px rgba(255, 255, 200, 1);  /* Glow aumentado */
+}
+
+.flower-left {
+  left: 15%;
+  transform: translateY(-50%);
+}
+
+.flower-right {
+  right: 15%;
+  transform: translateY(-50%);
+}
+
+@keyframes sway {
+  0% { transform: translateY(-50%) rotate(-5deg); }
+  50% { transform: translateY(-50%) rotate(5deg); }
+  100% { transform: translateY(-50%) rotate(-5deg); }
+}
+
+/* ----- Flor Tulipán ----- */
+.tulip-flower {
+  width: 50px;
+  height: 80px;
+  background: linear-gradient(to top, #ff69b4, #ff1493);
+  border-radius: 25px 25px 0 0;
+  margin: auto;
+  position: relative;
+  top: 10px;
+}
+
+.tulip-flower::before,
+.tulip-flower::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 80px;
+  background: linear-gradient(to top, #ff69b4, #ff1493);
+  border-radius: 25px 25px 0 0;
+}
+
+.tulip-flower::before {
+  transform: rotate(-30deg);
+  left: -25px;
+}
+
+.tulip-flower::after {
+  transform: rotate(30deg);
+  right: -25px;
+}
+
+/* ----- Flor Petunia ----- */
+.petunia-flower {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  position: relative;
+}
+
+.petal {
+  width: 30px;
+  height: 30px;
+  background: #9370DB;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.petal1 { top: 0; left: 15px; }
+.petal2 { top: 15px; left: 0; }
+.petal3 { top: 15px; right: 0; }
+.petal4 { bottom: 0; left: 15px; }
+
+.center {
+  width: 20px;
+  height: 20px;
+  background: yellow;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* ================================
+         Popups (Música y Fotos)
+=============================== */
+.popup {
+  position: absolute;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid #fff;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 10;
+  opacity: 0;
+}
+
+@keyframes popupAnimation {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.popup.show {
+  animation: popupAnimation 0.5s ease-out forwards;
+}
+
+/* Popup de música, ubicado debajo del tulipán */
+.music-popup {
+  top: 70%;
+  left: 5%;
+  transform: translate(-50%, 0);
+}
+
+/* Popup de fotos, centrado en el viewport (sobre la luna, que está centrada) */
+.photos-popup {
+  position: fixed;
+  top: 35%;
+  left: 33%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  max-width: 500px;
+  padding: 10px;
+}
+
+/* Contenedor de fotos */
+.photo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor de fila para imágenes */
+.photo-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.photo-row img {
+  width: 150px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.photo-row img:hover {
+  transform: scale(1.1);
+}
+
+.caption {
+  color: #fff;
+  margin-top: 10px;
+  text-align: center;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Dali<3 </title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="space">
+    <!-- Estrellas animadas -->
+    <div id="stars"></div>
+    
+    <!-- La luna interactiva -->
+    <div id="moon"></div>
+
+    <!-- Flor Tulipán (izquierda) -->
+    <div class="flower flower-left" id="tulip">
+      <div class="tulip-flower"></div>
+    </div>
+
+    <!-- Flor Petunia (derecha) -->
+    <div class="flower flower-right" id="petunia">
+      <div class="petunia-flower">
+        <div class="petal petal1"></div>
+        <div class="petal petal2"></div>
+        <div class="petal petal3"></div>
+        <div class="petal petal4"></div>
+        <div class="center"></div>
+      </div>
+    </div>
+
+    <!-- Popup para música (asociado al tulipán) -->
+    <div class="popup music-popup" id="musicPopup">
+      <audio controls id="music" src="assets/music/cancion.mp3"></audio>
+    </div>
+    
+    <!-- Popup para fotos (asociado a la petunia) -->
+    <div class="popup photos-popup" id="photosPopup">
+      <div class="photo-container">
+        <div class="photo-row">
+          <img src="assets/images/luna1.jpg" data-caption="me gusta la luna pero la iluminacion del negro de tus ojos me gusta mas" alt="Luna 1">
+          <img src="assets/images/luna2.jpg" data-caption="te diria que eres hermosa como una estrella, pero mejor digo que eres hermosa como la luna porque estrellas hay muchas y luna solo hay una " alt="Luna 2">
+          <img src="assets/images/luna3.jpg" data-caption="cuando tienes los ojos puestos en la luna, las estrellas no te distraen" alt="Luna 3">
+        </div>
+        <div class="caption" id="photoCaption"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
